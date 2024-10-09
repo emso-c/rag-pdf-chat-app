@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/prod.Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    volumes:
+      - ./shared/data:/usr/share/data
+
+  celery:
+    build:
+      context: .
+      dockerfile: docker/prod.Dockerfile
+    depends_on:
+      - redis
+    volumes:
+      - ./shared/data:/usr/share/data
+    command: ["celery", "-A", "app.tasks", "worker", "-P", "threads", "--loglevel=info"]
+
+  client:
+    build:
+      context: .
+      dockerfile: docker/client.Dockerfile
+    ports:
+      - "8501:8501"
+    depends_on:
+      - app
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - ./shared/data/redis:/usr/share/data/redis
+
+  nfs-server:
+    image: itsthenetwork/nfs-server-alpine
+    container_name: nfs-server
+    ports:
+      - "2049:2049"
+    volumes:
+      - ./shared/data:/usr/share/data
+    environment:
+      - SHARED_DIRECTORY=/usr/share/data
+      - NFS_SHARES="/usr/share/data *(rw,sync,no_subtree_check,insecure)"

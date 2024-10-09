@@ -1,0 +1,42 @@
+{
+  "test_musical_score": {
+    "cases": [
+      {
+        "query": "what is this document about?",
+        "output": "This piece is a melodic study in B flat major from Opus 16, composed by Stephen Heller.",
+        "retrieval_context": [
+          "Étude Mélodique Opus 16 No. 12 in B Flat Major",
+          "Composed by Stephen Heller (1813-1888)",
+          "[musical_notation]"
+        ]
+      },
+      {
+        "query": "which key is the piece written in?",
+        "output": "This piece is a melodic study in B Flat Major key.",
+        "retrieval_context": [
+          "Étude Mélodique Opus 16 No. 12 in B Flat Major",
+          "[musical_notation]"
+        ]
+      },
+      {
+        "query": "who composed this piece?",
+        "output": "Stephen Helle.",
+        "retrieval_context": [
+          "Composed by Stephen Heller (1813-1888)"
+        ]
+      }
+    ]
+  },
+  "test_bison": {
+    "cases": [
+      {
+        "query": "what is this document about?",
+        "output": "The document is about Flex and Bison. Flex and Bison are tools for building programs that handle structured input, originally used for compilers.",
+        "retrieval_context": [
+          "Latex and Bison, O'reilly",
+          "Flex and Bison are tools for building programs that handle structured input. They were originally tools for building compilers, but they have proven to be useful in many other areas. In this first chapter, we'll start by looking at a little (but not too much) of the theory behind them, and then we'll dive into some examples of their use."
+        ]
+      }
+    ]
+  }
+}

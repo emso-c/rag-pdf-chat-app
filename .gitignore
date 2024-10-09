@@ -1,0 +1,10 @@
+.venv
+data/*
+shared/data/*
+!shared/data/.gitkeep
+__pycache__
+.deepeval-cache.json
+.pytest_cache
+.git
+tests/data/
+.env*
